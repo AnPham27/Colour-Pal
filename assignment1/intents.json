@@ -1,10 +1,33 @@
 {"intents": [
     {"tag": "greetings",
     "patterns": ["hello", "hey", "hi", "good day", "greetings", "what's up?", "how is it going?"],
-    "responses": ["Hello!", "Hey!", "What can I do for you?"]
+    "responses": ["Hello! I am Colour Pal your virtual color palette curator! I'm here to transform your vision into a stunning array of colors. Start by telling me a color, a theme, or even a mood you have in mind, and let's craft your perfect palette together. Just type it in, and I will do the rest!"]
     },
     {"tag": "goodbye",
     "patterns": ["bye", "see you", "goodbye", "I am leaving", "have a good day", "see ya"],
-    "responses": ["Goodbye!", "See you!", "Have a great day!"]}
+    "responses": ["Goodbye!", "See you!", "Have a great day!"]},
+    {"tag": "Neutral",
+    "patterns": ["neutral","soft", "pastel", "serene", "cozy", "gender-neutral", "nude", "soothing", "timeless", "calming", "pale", "pale shades", "tender", "tender and mute", "minimalist", "floral"],
+    "responses": ["Absolutely! Baby Blue, Powder Pink, Pearl White, Muted Lavender, Whispering Peach"]
+    },
+    { "tag": "Colourful",
+    "patterns": ["vibrant", "lively", "colorful", "brigth", "bold", "vivid", "festive", "expresive", "chromatic", "multi-coloured", "diverse", "playful"],
+    "responses": ["Absolutely! Radiant Red, Electric Teal, Vibrant Grape Purple, Sunshine Orange, Emerald Green"]
+    },
+    {"tag": "Retro",
+    "patterns":["vintage", "retro", "iconic", "old-school", "old school", "retro pop", "nostalgic", "throwback", "disco", "groovy", "psychedelic", "old hollywood"],
+    "responses": ["Absolutely! Funky Fuchsia", "Groovy Green", "Faded Rose", "Rich Burgundy", "Glittering Silver"]
+    },
+    {"tag": "Winter",
+    "patterns": ["winter", "cold", "snowy", "snow", "chilly", "christmas", "holiday", "icy", "snowflake", "crisp"],
+    "responses":["Absolutely, Icy Blue, Crimson Red, Mistletoe Green, Festive Gold, Snowy White"]
+    }, 
+    {"tag": "Urban",
+    "patterns": ["urban", "sophisticated", "metropolitan", "metro", "contemporary", "modern", "industrial"],
+    "responses": ["Absolutely! Steel Gray, Metro Beige, Midnight Black, Urban White, Glassy Blue"]
+    }, 
+    {"tag": "Summer", 
+    "patterns": ["sunny", "beachy", "fruit", "poolside", "tropical", "garden", "coastal", "breezy"],
+    "responses": ["Absolutely! Sandy Beige, Sunshine Yellow, Creamsicle Orange, Coastal Blue, Seafoam Green"]
+    }
 ]}
-
