@@ -60,7 +60,7 @@ def get_response(intents_list, intents_json):
     return result
 
 
-print("Bot is running")
+print("ColourPal is now live. Say hi!")
 
 done = False
 
