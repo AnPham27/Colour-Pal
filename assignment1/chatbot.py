@@ -9,6 +9,9 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import nltk
 from nltk.stem import WordNetLemmatizer
 
+#nltk.download("wordnet")
+#nltk.download("punkt")             #download these FIRST run, then comment it out
+
 from tensorflow.keras.models import load_model
 
 lemmatizer = WordNetLemmatizer()    # helps search the STEM word. Ex: 'work' 'worked' 'working' all stem word is 'work'
@@ -36,14 +39,18 @@ def bag_of_words(sentence):
 
 def predict_class(sentence):
     bow = bag_of_words(sentence)
+    print(bow)
     res = model.predict(np.array([bow]))[0]
 
-    ERROR_THRESHOLD = 0.25  #if below 25%, we don't use it 
+    ERROR_THRESHOLD = 0.1  #if below 25%, we don't use it 
+  
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
 
     results.sort(key=lambda x: x[1], reverse=True)  #highest probability first 
 
     return_list = []
+    
+    print(return_list)
 
     for r in results: 
         return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
@@ -60,12 +67,14 @@ def get_response(intents_list, intents_json):
     return result
 
 
-print("ColourPal is now live. Say hi!")
+# print("ColourPal is now live. Say hi!")
+print("Hello! I am Colour Pal your virtual color palette curator! I'm here to transform your vision into a stunning array of colors. Start by telling me a color, a theme, or even a mood you have in mind, and let's craft your perfect palette together. Just type it in, and I will do the rest!")
 
 done = False
 
 while not done:
     message = input("")
+    print(message)
     if message == "STOP":
         done = True
     else: 

@@ -24,13 +24,15 @@ for intent in intents['intents']:
         if intent['tag'] not in classes:    #check if the tag already exists, if not, add it 
             classes.append(intent['tag'])
 
+print(documents)
+
 words = [lemmatizer.lemmatize(word) for word in words if word not in ignoreLetters]
 words = sorted(set(words))
 
 classes = sorted(set(classes))
 
-pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(classes, open('classes.pkl', 'wb'))
+pickle.dump(words, open('./assignment1/words.pkl', 'wb'))
+pickle.dump(classes, open('./assignment1/classes.pkl', 'wb'))
 
 training = []
 outputEmpty = [0] * len(classes)
@@ -74,5 +76,5 @@ model.compile(loss=mse_loss, optimizer=optimizer, metrics=['mean_squared_error']
 
 # Train your model with gradient descent
 model.fit(trainX, trainY, epochs=200, batch_size=5, verbose=1)
-model.save('chatbot_model.h5')
+model.save('./assignment1/chatbot_model.h5')
 print('Done')
