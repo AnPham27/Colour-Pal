@@ -31,8 +31,8 @@ words = sorted(set(words))
 
 classes = sorted(set(classes))
 
-pickle.dump(words, open('./assignment1/words.pkl', 'wb'))
-pickle.dump(classes, open('./assignment1/classes.pkl', 'wb'))
+pickle.dump(words, open('./chatbot/words.pkl', 'wb'))
+pickle.dump(classes, open('./chatbot/classes.pkl', 'wb'))
 
 training = []
 outputEmpty = [0] * len(classes)
@@ -67,14 +67,14 @@ model.add(tf.keras.layers.Dense(len(trainY[0]), activation='softmax'))
 # Use mean squared error (MSE) as the loss
 mse_loss = tf.keras.losses.MeanSquaredError()
 
-# Create a normal gradient descent optimizer with a custom learning rate
+# Create a normal gradient descent optimizer with learning rate
 custom_lr = 0.01
 optimizer = tf.keras.optimizers.SGD(learning_rate=custom_lr, momentum=0.0, nesterov=False)
 
-# Compile the model with the MSE loss and custom gradient descent optimizer
+# Compile the model with the MSE loss and gradient descent optimizer
 model.compile(loss=mse_loss, optimizer=optimizer, metrics=['mean_squared_error'])
 
 # Train your model with gradient descent
 model.fit(trainX, trainY, epochs=200, batch_size=5, verbose=1)
-model.save('./assignment1/chatbot_model.h5')
+model.save('./chatbot/chatbot_model.h5')
 print('Done')

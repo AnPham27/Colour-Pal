@@ -1,0 +1,14 @@
+{"intents": [
+    {"tag": "greetings",
+    "patterns": ["hello", "hey", "hi", "good day", "greetings", "what's up?"],
+    "responses": ["Hello!", "Greetings!", "Good day!", "Hi!", "Hey!"]
+    },
+    {"tag": "goodbye",
+    "patterns": ["bye", "see you", "goodbye", "peace", "see ya", "later"],
+    "responses": ["Goodbye!", "See you!", "Have a great day!", "Later!", "Bye!"]
+    },
+    {"tag": "Pastel",
+    "patterns": ["soft", "serene", "soothing", "calming", "pale", "pastel"],
+    "responses": ["Baby Blue", "Powder Pink","Pearl White", "Muted Lavender", "Whispering Peach"]
+    }
+]}

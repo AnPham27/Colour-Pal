@@ -16,11 +16,11 @@ from tensorflow.keras.models import load_model
 
 lemmatizer = WordNetLemmatizer()    # helps search the STEM word. Ex: 'work' 'worked' 'working' all stem word is 'work'
 
-intents = json.loads(open('./assignment1/intents.json').read())
+intents = json.loads(open('./chatbot/intents.json').read())
 
-words = pickle.load(open('./assignment1/words.pkl', 'rb'))
-classes = pickle.load(open('./assignment1/classes.pkl', 'rb'))
-model = load_model('./assignment1/chatbot_model.h5')
+words = pickle.load(open('./chatbot/words.pkl', 'rb'))
+classes = pickle.load(open('./chatbot/classes.pkl', 'rb'))
+model = load_model('./chatbot/chatbot_model.h5')
 
 
 def clean_up_sentence(sentence):
@@ -40,24 +40,33 @@ def bag_of_words(sentence):
 def predict_class(sentence):
     bow = bag_of_words(sentence)
     print(bow)
+    print(model.predict(np.array([bow]))[0])
     res = model.predict(np.array([bow]))[0]
 
-    ERROR_THRESHOLD = 0.1  #if below 25%, we don't use it 
+    ERROR_THRESHOLD = 0.005
   
-    results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    # results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
 
-    results.sort(key=lambda x: x[1], reverse=True)  #highest probability first 
+    # results.sort(key=lambda x: x[1], reverse=True)  #highest probability first 
 
     return_list = []
     
-    print(return_list)
+    results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
+    # print(results)
+    
+    if not results:
+        # Handle the case where no intents were activated
+        return_list.append({'intent': 'unknown', 'probability': '0.0'})
+    else:
+        results.sort(key=lambda x: x[1], reverse=True)  # highest probability first
+        # print(results)
+        for r in results:
+            return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
 
-    for r in results: 
-        return_list.append({'intent': classes[r[0]], 'probability': str(r[1])})
-        
     return return_list
 
 def get_response(intents_list, intents_json):
+    result = ""
     tag = intents_list[0]['intent']
     list_of_intents = intents_json['intents']
     for i in list_of_intents:
@@ -72,9 +81,10 @@ print("Hello! I am Colour Pal your virtual color palette curator! I'm here to tr
 
 done = False
 
+
 while not done:
     message = input("")
-    print(message)
+   
     if message == "STOP":
         done = True
     else: 
